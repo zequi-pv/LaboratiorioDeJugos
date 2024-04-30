@@ -1,6 +1,6 @@
 .vs/
-Win32/
-x64/
+bin/
+obj/
 Clase1/Debug/
 Clase1/Win32/
 Clase1/x64/
