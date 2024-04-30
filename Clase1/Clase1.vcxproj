@@ -101,7 +101,7 @@
       <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-system-d.lib;sfml-window-d.lib;flac.lib;freetype.lib;ogg.lib;openal32.lib;vorbis.lib;vorbisenc.lib;vorbisfile.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy "$(SolutionDir)SFML\dlls\x86\debug" "$(OutDir)" /i/y/s
+      <Command>xcopy "$(SolutionDir)SFML\dlls\x86\Debug" "$(OutDir)" /i/y/s
 xcopy "$(SolutionDir)SFML\dlls\x86\dependencies" "$(OutDir)" /i/y/s</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>

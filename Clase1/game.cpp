@@ -8,20 +8,23 @@ using namespace sf;
 void Game::runGame() 
 {
     RenderWindow window(sf::VideoMode(854, 480), "Labo de jugos");
-    CircleShape shape(100.f);
+    //CircleShape shape(100.f);
     RectangleShape rectangle;
     RectangleShape ground;
     Keyboard keyboard;
     Time dt;
     Clock clock;
-    float rectangleX = (GetScreenWidth() / 2) - 100;
-    float rectangleY = GetScreenHeight() / 2;
+    float rectangleX = (GetScreenWidth() / 2 - 350);
+    float rectangleY = (GetScreenHeight() / 2) + 60;
     rectangle.setSize(Vector2f(200,100));
-    rectangle.setFillColor(Color::White);
+    rectangle.setFillColor(Color::Green);
     rectangle.setPosition(rectangleX, rectangleY);
     ground.setSize(Vector2f(854, 100));
+    ground.setFillColor(Color::White);
+    ground.setPosition(0,400);
+    bool isJumping = false;
 
-    shape.setFillColor(Color::Green);
+    //shape.setFillColor(Color::Green);
 
     while (window.isOpen())
     {
@@ -44,6 +47,7 @@ void Game::runGame()
         {
             rectangleY -= 50 * dt.asSeconds();
             rectangle.setPosition(rectangleX, rectangleY);
+            isJumping = true;
         }
 
         if (keyboard.isKeyPressed(Keyboard::A))
@@ -59,8 +63,9 @@ void Game::runGame()
         }
 
         window.clear();
-        window.draw(shape);
+        //window.draw(shape);
         window.draw(rectangle);
+        window.draw(ground);
         window.display();
     }
 }
