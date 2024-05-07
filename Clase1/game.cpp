@@ -2,6 +2,7 @@
 #include <SFML/System/Clock.hpp>
 #include "game.h"
 #include "utils.h"
+#include "Player.h"
 
 using namespace sf;
 
@@ -24,6 +25,12 @@ void Game::runGame()
     ground.setPosition(0,400);
     bool isJumping = false;
 
+    Player player;
+    player.setSize(Vector2f(200, 100));
+    player.setPosition(Vector2f(rectangleX, rectangleY));
+    player.getShape()->setFillColor(Color::Green);
+    
+
     //shape.setFillColor(Color::Green);
 
     while (window.isOpen())
@@ -37,34 +44,18 @@ void Game::runGame()
                 window.close();
         }
 
-        if (keyboard.isKeyPressed(Keyboard::D))
-        {
-            rectangleX += 50 * dt.asSeconds();
-            rectangle.setPosition(rectangleX, rectangleY);
-        }
+        player.movePlayer(dt);
 
-        if (keyboard.isKeyPressed(Keyboard::W))
+        if (player.getShape()->getPosition().y + player.getShape()->getSize().y >= ground.getPosition().y)
         {
-            rectangleY -= 50 * dt.asSeconds();
-            rectangle.setPosition(rectangleX, rectangleY);
-            isJumping = true;
+            player.getShape()->setPosition(Vector2f(player.getShape()->getPosition().x, ground.getPosition().y - player.getShape()->getSize().y));
+            
+              
         }
-
-        if (keyboard.isKeyPressed(Keyboard::A))
-        {
-            rectangleX -= 50 * dt.asSeconds();
-            rectangle.setPosition(rectangleX, rectangleY);
-        }
-
-        if (keyboard.isKeyPressed(Keyboard::S))
-        {
-            rectangleY += 50 * dt.asSeconds();
-            rectangle.setPosition(rectangleX, rectangleY);
-        }
-
+        
         window.clear();
         //window.draw(shape);
-        window.draw(rectangle);
+        window.draw(*player.getShape());
         window.draw(ground);
         window.display();
     }

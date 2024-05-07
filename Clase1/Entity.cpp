@@ -16,6 +16,12 @@ Vector2f Entity::getSize()
 void Entity::setSize(Vector2f newSize)
 {
 	size = newSize;
+	entityShape.setSize(newSize);
+}
+
+RectangleShape* Entity::getShape()
+{
+	return &entityShape;
 }
 
 Vector2f Entity::getPosition()
@@ -26,6 +32,7 @@ Vector2f Entity::getPosition()
 void Entity::setPosition(Vector2f newPosition)
 {
 	position = newPosition;
+	entityShape.setPosition(position.x, position.y);
 }
 
 void Entity::setTexture(Texture newTexture)
