@@ -39,7 +39,7 @@ void Game::runGame()
 
     //shape.setFillColor(Color::Green);
 
-    while (window.isOpen())
+    while (window.isOpen() && player.getIsAlive())
     {
         dt = clock.restart();
 
