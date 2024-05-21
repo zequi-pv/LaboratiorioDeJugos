@@ -24,16 +24,16 @@ RectangleShape* Entity::getShape()
 	return &entityShape;
 }
 
-Vector2f Entity::getPosition()
-{
-	return position;
-}
-
-void Entity::setPosition(Vector2f newPosition)
-{
-	position = newPosition;
-	entityShape.setPosition(position.x, position.y);
-}
+//Vector2f Entity::getPosition()
+//{
+//	return position;
+//}
+//
+//void Entity::setPosition(Vector2f newPosition)
+//{
+//	position = newPosition;
+//	entityShape.setPosition(position.x, position.y);
+//}
 
 void Entity::setTexture(Texture newTexture)
 {

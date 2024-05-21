@@ -28,13 +28,13 @@ void Game::runGame()
 
     Player player;
     player.setSize(Vector2f(200, 100));
-    player.setPosition(Vector2f(rectangleX, rectangleY));
+    player.getShape()->setPosition(Vector2f(rectangleX, rectangleY));
     player.getShape()->setFillColor(Color::Green);
     player.setGravity(5);
 
     Obstacle obstacle;
-    obstacle.setSize(Vector2f(100,50));
-    obstacle.setPosition(Vector2f(854, GetScreenHeight() - 400));
+    obstacle.setSize(Vector2f(50,300));
+    obstacle.getShape()->setPosition(Vector2f(854, (GetScreenHeight()/2) + 50));
     obstacle.getShape()->setFillColor(Color::Blue);
 
     //shape.setFillColor(Color::Green);
@@ -55,11 +55,19 @@ void Game::runGame()
 
         if (player.getShape()->getPosition().y + player.getShape()->getSize().y >= ground.getPosition().y)
         {
-            player.getShape()->setPosition(Vector2f(player.getShape()->getPosition().x, ground.getPosition().y - player.getShape()->getSize().y));
-            
-              
+            player.getShape()->setPosition(Vector2f(player.getShape()->getPosition().x, ground.getPosition().y - player.getShape()->getSize().y)); 
         }
         
+        if (obstacle.getShape()->getPosition().x + obstacle.getShape()->getSize().x < 0)
+        {
+            obstacle.getShape()->setPosition(854, (GetScreenHeight() / 2) + 50);
+        }
+
+        if (player.getShape()->getPosition().x + player.getShape()->getSize().x > obstacle.getShape()->getPosition().x)
+        {
+            player.playerHit();
+        }
+
         window.clear();
         //window.draw(shape);
         window.draw(*player.getShape());

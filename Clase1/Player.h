@@ -13,6 +13,8 @@ public:
 	void movePlayer(Time dt);
 	void drawPlayer();
 	void setGravity(float newGravity);
+	bool getIsAlive();
+	void playerHit();
 private:
 
 protected:
@@ -21,4 +23,5 @@ protected:
 	Vector2f acceleration;
 	float gravity;
 	bool isJumping;
+	bool isAlive;
 };

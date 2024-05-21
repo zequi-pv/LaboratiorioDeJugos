@@ -20,14 +20,14 @@ void Player::movePlayer(Time dt)
     float rectangleX;
     float rectangleY;
 
-    if (keyboard.isKeyPressed(Keyboard::D))
+    /*if (keyboard.isKeyPressed(Keyboard::D))
     {
         rectangleX = position.x + 50.0f * dt.asSeconds();
         newPosition = { rectangleX, position.y };
         position = newPosition;
         entityShape.setPosition(newPosition); 
         cout << newPosition.x << endl;
-    }
+    }*/
 
     if (keyboard.isKeyPressed(Keyboard::W))
     {
@@ -38,7 +38,7 @@ void Player::movePlayer(Time dt)
         position = newPosition;
         entityShape.setPosition(newPosition);*/
 
-        speed.y = -10;
+        /*speed.y = -10;
 
         if (position.y < 100)
         {
@@ -47,7 +47,7 @@ void Player::movePlayer(Time dt)
         else if (position.y > 100)
         {
             position.y = (GetScreenHeight() / 2) + 60;
-        }
+        }*/
 
         /*speed.x += acceleration.x;
         speed.y += acceleration.y;
@@ -77,7 +77,7 @@ void Player::movePlayer(Time dt)
         position.y -= speed * dt.asSeconds();
     }*/
 
-    if (keyboard.isKeyPressed(Keyboard::A))
+   /* if (keyboard.isKeyPressed(Keyboard::A))
     {
         rectangleX = position.x - 50 * dt.asSeconds();
         newPosition = { rectangleX, position.y };
@@ -91,7 +91,17 @@ void Player::movePlayer(Time dt)
         newPosition = { position.x, rectangleY };
         position = newPosition;
         entityShape.setPosition(newPosition);
-    }
+    }*/
+}
+
+bool Player::getIsAlive()
+{
+    return isAlive;
+}
+
+void Player::playerHit()
+{
+    isAlive = false;
 }
 
 void Player::setGravity(float newGravity)

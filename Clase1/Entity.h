@@ -11,7 +11,7 @@ public:
 	Vector2f getSize();
 	void setSize(Vector2f newSize);
 	Vector2f getPosition();
-	void setPosition(Vector2f newPosition);
+	//void setPosition(Vector2f newPosition);
 	void setTexture(Texture newTexture);
 	RectangleShape* getShape();
 private:
@@ -19,6 +19,6 @@ private:
 protected:
 	RectangleShape entityShape;
 	Vector2f size;
-	Vector2f position;
+	//Vector2f position;
 	Texture texEntity;
 };

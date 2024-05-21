@@ -14,7 +14,7 @@ void Obstacle::moveObstacle(Time dt)
 	float rectangleX;
 	float rectangleY;
 
-	rectangleX = position.x - 50.0f * dt.asSeconds();
-	newPosition = { rectangleX, position.y };
+	rectangleX = entityShape.getPosition().x - 50.0f * dt.asSeconds();
+	newPosition = { rectangleX, entityShape.getPosition().y };
 	entityShape.setPosition(newPosition);
 }
