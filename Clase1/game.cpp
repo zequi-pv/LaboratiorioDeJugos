@@ -3,6 +3,7 @@
 #include "game.h"
 #include "utils.h"
 #include "Player.h"
+#include "Obstacle.h"
 
 using namespace sf;
 
@@ -29,7 +30,12 @@ void Game::runGame()
     player.setSize(Vector2f(200, 100));
     player.setPosition(Vector2f(rectangleX, rectangleY));
     player.getShape()->setFillColor(Color::Green);
-    
+    player.setGravity(5);
+
+    Obstacle obstacle;
+    obstacle.setSize(Vector2f(100,50));
+    obstacle.setPosition(Vector2f(854, GetScreenHeight() - 400));
+    obstacle.getShape()->setFillColor(Color::Blue);
 
     //shape.setFillColor(Color::Green);
 
@@ -45,6 +51,7 @@ void Game::runGame()
         }
 
         player.movePlayer(dt);
+        obstacle.moveObstacle(dt);
 
         if (player.getShape()->getPosition().y + player.getShape()->getSize().y >= ground.getPosition().y)
         {
@@ -56,6 +63,7 @@ void Game::runGame()
         window.clear();
         //window.draw(shape);
         window.draw(*player.getShape());
+        window.draw(*obstacle.getShape());
         window.draw(ground);
         window.display();
     }

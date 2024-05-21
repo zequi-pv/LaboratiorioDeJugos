@@ -2,8 +2,9 @@
 
 Player::Player()
 {
-    speed = 0.0f;
-    acceleration = 0.0f;
+    speed = { 0.0f,0.0f };
+    acceleration.x = 0.0f;
+    acceleration.y = 0.0f;
     gravity = 200.0f;
     isJumping = false;
 }
@@ -30,14 +31,29 @@ void Player::movePlayer(Time dt)
 
     if (keyboard.isKeyPressed(Keyboard::W))
     {
-        acceleration = 0.0f;
+        /*acceleration.y = 0.0f;
         speed = gravity / 2;
         rectangleY = position.y - 50 * dt.asSeconds();
         newPosition = { position.x, rectangleY };
         position = newPosition;
-        entityShape.setPosition(newPosition);
+        entityShape.setPosition(newPosition);*/
 
-        
+        speed.y = -10;
+
+        if (position.y < 100)
+        {
+            speed.y += gravity;
+        }
+        else if (position.y > 100)
+        {
+            position.y = (GetScreenHeight() / 2) + 60;
+        }
+
+        /*speed.x += acceleration.x;
+        speed.y += acceleration.y;
+
+        position.x += speed.x;
+        position.y += speed.y;*/
 
        /* Event event;
         while (window.pollEvent(event))
@@ -49,17 +65,17 @@ void Player::movePlayer(Time dt)
         
         
     }
-    else
+    /*else
     {
         if (true)
         {
 
         }
 
-        acceleration += gravity * dt.asSeconds();
+        acceleration.y += gravity * dt.asSeconds();
         speed -= acceleration * dt.asSeconds();
         position.y -= speed * dt.asSeconds();
-    }
+    }*/
 
     if (keyboard.isKeyPressed(Keyboard::A))
     {
@@ -76,6 +92,11 @@ void Player::movePlayer(Time dt)
         position = newPosition;
         entityShape.setPosition(newPosition);
     }
+}
+
+void Player::setGravity(float newGravity)
+{
+    gravity = newGravity;
 }
 
 void Player::drawPlayer()

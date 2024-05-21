@@ -1,5 +1,6 @@
 #pragma once
 #include "Entity.h"
+#include "utils.h" 
 #include <iostream>
 
 using namespace std;
@@ -11,12 +12,13 @@ public:
 	~Player();
 	void movePlayer(Time dt);
 	void drawPlayer();
+	void setGravity(float newGravity);
 private:
 
 protected:
 	int score;
-	float speed;
-	float acceleration;
+	Vector2f speed;
+	Vector2f acceleration;
 	float gravity;
 	bool isJumping;
 };
