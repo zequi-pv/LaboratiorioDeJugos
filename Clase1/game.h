@@ -1,4 +1,6 @@
 #pragma once
+#include "Player.h"
+#include "Obstacle.h"
 
 class Game
 {
@@ -7,5 +9,7 @@ public:
 	~Game();
 	void runGame();
 private:
+	void obsTransition(Obstacle& obstacle);
+	void collision(Player& player, Obstacle& obstacle);
 	
 };
