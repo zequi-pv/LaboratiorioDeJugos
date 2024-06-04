@@ -26,6 +26,14 @@ void Game::runGame()
     ground.setPosition(0,400);
     bool isJumping = false;
 
+    int currentOption = 0;
+    int firstOption = GameScreen::GAMEPLAY;
+    int lastOption = GameScreen::EXIT;
+    GameScreen currentScreen = GameScreen::MENU;
+
+    float timer = 0;
+    float coolDownTime = 0.54f;
+
     Player player;
     player.setSize(Vector2f(200, 100));
     player.getShape()->setPosition(Vector2f(rectangleX, rectangleY));
@@ -48,16 +56,55 @@ void Game::runGame()
     obstacle3.getShape()->setFillColor(Color::Blue);
 
     //shape.setFillColor(Color::Green);
-
+    bool windowOpen = window.isOpen();
+    bool playerIsAlive = player.getIsAlive();
     while (window.isOpen() && player.getIsAlive())
     {
         dt = clock.restart();
+
+        timer += dt.asSeconds();
 
         Event event;
         while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
                 window.close();
+        }
+
+        if (keyboard.isKeyPressed(Keyboard::Down))
+        {
+            if(timer >= coolDownTime)
+            {
+                timer -= coolDownTime;
+                currentOption++;
+
+                if (currentOption >= lastOption)
+                {
+                    currentOption = lastOption;
+                }
+            }
+        }
+
+        if (keyboard.isKeyPressed(Keyboard::Up))
+        {
+            if(timer >= coolDownTime)
+            {
+                timer -= coolDownTime;
+                currentOption--;
+
+                if (currentOption <= firstOption)
+                {
+                    currentOption = firstOption;
+                }
+            }
+        }
+
+        switch (currentScreen)
+        {
+        case GameScreen::MENU:
+
+        default:
+            break;
         }
 
         player.movePlayer(dt);

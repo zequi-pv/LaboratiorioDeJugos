@@ -5,6 +5,7 @@ Player::Player()
     speed = { 0.0f,100.0f };
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
+    isAlive = true;
     isJumping = false;
 }
 

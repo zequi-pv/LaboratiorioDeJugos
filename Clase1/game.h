@@ -13,3 +13,11 @@ private:
 	void collision(Player& player, Obstacle& obstacle);
 	
 };
+
+enum GameScreen
+{
+	MENU,
+	GAMEPLAY,
+	CREDITS,
+	EXIT
+};
