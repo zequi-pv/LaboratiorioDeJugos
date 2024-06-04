@@ -2,10 +2,9 @@
 
 Player::Player()
 {
-    speed = { 0.0f,0.0f };
+    speed = { 0.0f,100.0f };
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
-    gravity = 200.0f;
     isJumping = false;
 }
 
@@ -28,9 +27,18 @@ void Player::movePlayer(Time dt)
         entityShape.setPosition(newPosition); 
         cout << newPosition.x << endl;
     }*/
+    float posX = entityShape.getPosition().x;
+    float posY = entityShape.getPosition().y;
 
     if (keyboard.isKeyPressed(Keyboard::W))
     {
+
+        posY -= speed.y * dt.asSeconds();
+
+        entityShape.setPosition(posX, posY);
+        isJumping = true;
+        
+        cout << "Salto" << endl;   
         /*acceleration.y = 0.0f;
         speed = gravity / 2;
         rectangleY = position.y - 50 * dt.asSeconds();
@@ -65,19 +73,20 @@ void Player::movePlayer(Time dt)
         
         
     }
-    /*else
+
+    if (isJumping == true)
     {
-        if (true)
+        posY += gravity * dt.asSeconds();
+        entityShape.setPosition(posX, posY);
+        cout << gravity << endl;
+
+        if (posY >= 400)
         {
-
+            isJumping = false;
         }
+    }
 
-        acceleration.y += gravity * dt.asSeconds();
-        speed -= acceleration * dt.asSeconds();
-        position.y -= speed * dt.asSeconds();
-    }*/
-
-   /* if (keyboard.isKeyPressed(Keyboard::A))
+    /*if (keyboard.isKeyPressed(Keyboard::A))
     {
         rectangleX = position.x - 50 * dt.asSeconds();
         newPosition = { rectangleX, position.y };
