@@ -25,6 +25,7 @@ void Game::runGame()
     ground.setFillColor(Color::White);
     ground.setPosition(0,400);
     bool isJumping = false;
+    bool isGameRunning = true;
 
     int currentOption = 0;
     int firstOption = GameScreen::GAMEPLAY;
@@ -58,7 +59,7 @@ void Game::runGame()
     //shape.setFillColor(Color::Green);
     bool windowOpen = window.isOpen();
     bool playerIsAlive = player.getIsAlive();
-    while (window.isOpen() && player.getIsAlive())
+    while (window.isOpen() && player.getIsAlive() && isGameRunning)
     {
         dt = clock.restart();
 
@@ -102,33 +103,64 @@ void Game::runGame()
         switch (currentScreen)
         {
         case GameScreen::MENU:
+            switch (currentOption)
+            {
+            case GameScreen::GAMEPLAY:
+                if (keyboard.isKeyPressed(Keyboard::Enter))
+                {
+                    currentScreen = GameScreen::GAMEPLAY;
+                }
+                break;
+            case GameScreen::CREDITS:
+                if (keyboard.isKeyPressed(Keyboard::Enter))
+                {
+                    currentScreen = GameScreen::CREDITS;
+                }
+                break;
+            case GameScreen::EXIT:
+                if (keyboard.isKeyPressed(Keyboard::Enter))
+                {
+                    currentScreen = GameScreen::EXIT;
+                }
+                break;
+            default:
+                break;
+            }
+            break;
+        case GameScreen::GAMEPLAY:
+            player.movePlayer(dt);
 
+            if (player.getShape()->getPosition().y + player.getShape()->getSize().y >= ground.getPosition().y)
+            {
+                player.getShape()->setPosition(Vector2f(player.getShape()->getPosition().x, ground.getPosition().y - player.getShape()->getSize().y));
+            }
+
+            obstacle.moveObstacle(dt);
+            obstacle2.moveObstacle(dt);
+            obstacle3.moveObstacle(dt);
+
+            obsTransition(obstacle);
+            obsTransition(obstacle2);
+            obsTransition(obstacle3);
+
+            collision(player, obstacle);
+            collision(player, obstacle2);
+            collision(player, obstacle3);
+            break;
+        case GameScreen::CREDITS:
+
+            break;
+        case GameScreen::EXIT:
+            isGameRunning = false;
+            break;
         default:
             break;
         }
 
-        player.movePlayer(dt);
-
-        if (player.getShape()->getPosition().y + player.getShape()->getSize().y >= ground.getPosition().y)
-        {
-            player.getShape()->setPosition(Vector2f(player.getShape()->getPosition().x, ground.getPosition().y - player.getShape()->getSize().y)); 
-        }
-
-        obstacle.moveObstacle(dt);
-        obstacle2.moveObstacle(dt);
-        obstacle3.moveObstacle(dt);
         
-        obsTransition(obstacle);
-        obsTransition(obstacle2);
-        obsTransition(obstacle3);
-
-        collision(player, obstacle);
-        collision(player, obstacle2);
-        collision(player, obstacle3);
        
 
         window.clear();
-        //window.draw(shape);
         window.draw(*player.getShape());
         window.draw(*obstacle.getShape());
         window.draw(*obstacle2.getShape());
