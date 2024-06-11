@@ -7,33 +7,28 @@
 
 using namespace sf;
 
+
+
 void Game::runGame() 
 {
     RenderWindow window(sf::VideoMode(854, 480), "Labo de jugos");
-    //CircleShape shape(100.f);
-    RectangleShape rectangle;
-    RectangleShape ground;
-    Keyboard keyboard;
-    Time dt;
     Clock clock;
-    float rectangleX = (GetScreenWidth() / 2 - 350);
-    float rectangleY = (GetScreenHeight() / 2) + 60;
-    rectangle.setSize(Vector2f(200,100));
+    GameScreen currentScreen;
+    currentScreen = GameScreen::MENU;
+    firstOption = GameScreen::GAMEPLAY;
+    lastOption = GameScreen::EXIT;
+    rectangle.setSize(Vector2f(200, 100));
     rectangle.setFillColor(Color::Green);
     rectangle.setPosition(rectangleX, rectangleY);
     ground.setSize(Vector2f(854, 100));
     ground.setFillColor(Color::White);
-    ground.setPosition(0,400);
-    bool isJumping = false;
-    bool isGameRunning = true;
+    ground.setPosition(0, 400);
 
-    int currentOption = 0;
-    int firstOption = GameScreen::GAMEPLAY;
-    int lastOption = GameScreen::EXIT;
-    GameScreen currentScreen = GameScreen::MENU;
+    font.loadFromFile("res/fonts/BoaConstruktorBold.ttf");
 
-    float timer = 0;
-    float coolDownTime = 0.54f;
+    title.setFont(font);
+    title.setCharacterSize(50);
+    title.setStyle(Text::Regular);
 
     Player player;
     player.setSize(Vector2f(200, 100));
@@ -162,6 +157,38 @@ void Game::runGame()
         case MENU:
             switch (currentOption)
             {
+            case MENU:
+
+                title.setFillColor(Color::Blue);
+                title.setPosition(330, 130);
+                title.setString("RUNNER");
+                window.draw(title);
+
+                gamePlay.setFillColor(Color::Blue);
+                gamePlay.setPosition(390, 190);
+                gamePlay.setFont(font);
+                gamePlay.setCharacterSize(30);
+                gamePlay.setStyle(Text::Regular);
+                gamePlay.setString("PLAY");
+                window.draw(gamePlay);
+
+                Credits.setFillColor(Color::Blue);
+                Credits.setPosition(390, 220);
+                Credits.setFont(font);
+                Credits.setCharacterSize(30);
+                Credits.setStyle(Text::Regular);
+                Credits.setString("CREDITS");
+                window.draw(Credits);
+
+                Exit.setFillColor(Color::Blue);
+                Exit.setPosition(390, 250);
+                Exit.setFont(font);
+                Exit.setCharacterSize(30);
+                Exit.setStyle(Text::Regular);
+                Exit.setString("EXIT");
+                window.draw(Exit);
+
+                break;
             case GAMEPLAY:
                 break;
             case CREDITS:
@@ -193,12 +220,12 @@ void Game::runGame()
         window.display();
     }
 }
-
-void drawText(Text text)
-{
-    //text.setFont();
-    
-}
+//
+//void drawText(Text text)
+//{
+//    window.draw
+//    
+//}
 
 void Game::obsTransition(Obstacle& obstacle)
 {

@@ -12,6 +12,28 @@ private:
 	void obsTransition(Obstacle& obstacle);
 	void collision(Player& player, Obstacle& obstacle);
 	
+	//CircleShape shape(100.f);
+	RectangleShape rectangle;
+	RectangleShape ground;
+	Keyboard keyboard;
+	Time dt;
+	float rectangleX = (GetScreenWidth() / 2 - 350);
+	float rectangleY = (GetScreenHeight() / 2) + 60;
+
+	bool isJumping = false;
+	bool isGameRunning = true;
+
+	int currentOption = 0;
+	int firstOption;
+	int lastOption;
+	Font font;
+	Text title;
+	Text gamePlay;
+	Text Credits;
+	Text Exit;
+
+	float timer = 0;
+	float coolDownTime = 0.54f;
 };
 
 enum GameScreen
