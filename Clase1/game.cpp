@@ -157,17 +157,47 @@ void Game::runGame()
             break;
         }
 
+        switch (currentScreen)
+        {
+        case MENU:
+            switch (currentOption)
+            {
+            case GAMEPLAY:
+                break;
+            case CREDITS:
+                break;
+            case EXIT:
+                break;
+            default:
+                break;
+            }
+            break;
+        case GAMEPLAY:
+            window.clear();
+            window.draw(*player.getShape());
+            window.draw(*obstacle.getShape());
+            window.draw(*obstacle2.getShape());
+            window.draw(*obstacle3.getShape());
+            window.draw(ground);
+            break;
+        case CREDITS:
+            window.clear();
+            break;
+        case EXIT:
+            window.clear();
+            break;
+        default:
+            break;
+        }
         
-       
-
-        window.clear();
-        window.draw(*player.getShape());
-        window.draw(*obstacle.getShape());
-        window.draw(*obstacle2.getShape());
-        window.draw(*obstacle3.getShape());
-        window.draw(ground);
         window.display();
     }
+}
+
+void drawText(Text text)
+{
+    //text.setFont();
+    
 }
 
 void Game::obsTransition(Obstacle& obstacle)
