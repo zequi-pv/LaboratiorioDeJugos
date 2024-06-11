@@ -155,45 +155,64 @@ void Game::runGame()
         switch (currentScreen)
         {
         case MENU:
+
+            title.setFillColor(Color::Blue);
+            title.setPosition(330, 130);
+            title.setString("RUNNER");
+            window.draw(title);
+
+            gamePlay.setFillColor(Color::Blue);
+            gamePlay.setPosition(390, 190);
+            gamePlay.setFont(font);
+            gamePlay.setCharacterSize(30);
+            gamePlay.setStyle(Text::Regular);
+            gamePlay.setString("PLAY");
+            window.draw(gamePlay);
+
+            Credits.setFillColor(Color::Blue);
+            Credits.setPosition(390, 220);
+            Credits.setFont(font);
+            Credits.setCharacterSize(30);
+            Credits.setStyle(Text::Regular);
+            Credits.setString("CREDITS");
+            window.draw(Credits);
+
+            Exit.setFillColor(Color::Blue);
+            Exit.setPosition(390, 250);
+            Exit.setFont(font);
+            Exit.setCharacterSize(30);
+            Exit.setStyle(Text::Regular);
+            Exit.setString("EXIT");
+            window.draw(Exit);
+
             switch (currentOption)
             {
-            case MENU:
-
-                title.setFillColor(Color::Blue);
-                title.setPosition(330, 130);
-                title.setString("RUNNER");
-                window.draw(title);
-
-                gamePlay.setFillColor(Color::Blue);
+            case GAMEPLAY:
+                gamePlay.setFillColor(Color::Red);
                 gamePlay.setPosition(390, 190);
                 gamePlay.setFont(font);
                 gamePlay.setCharacterSize(30);
                 gamePlay.setStyle(Text::Regular);
                 gamePlay.setString("PLAY");
                 window.draw(gamePlay);
-
-                Credits.setFillColor(Color::Blue);
+                break;
+            case CREDITS:
+                Credits.setFillColor(Color::Red);
                 Credits.setPosition(390, 220);
                 Credits.setFont(font);
                 Credits.setCharacterSize(30);
                 Credits.setStyle(Text::Regular);
                 Credits.setString("CREDITS");
                 window.draw(Credits);
-
-                Exit.setFillColor(Color::Blue);
+                break;
+            case EXIT:
+                Exit.setFillColor(Color::Red);
                 Exit.setPosition(390, 250);
                 Exit.setFont(font);
                 Exit.setCharacterSize(30);
                 Exit.setStyle(Text::Regular);
                 Exit.setString("EXIT");
                 window.draw(Exit);
-
-                break;
-            case GAMEPLAY:
-                break;
-            case CREDITS:
-                break;
-            case EXIT:
                 break;
             default:
                 break;
