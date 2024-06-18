@@ -22,8 +22,9 @@ private:
 
 	bool isJumping = false;
 	bool isGameRunning = true;
+	bool pause = false;
 
-	int currentOption = 0;
+	int currentOption = 1;
 	int firstOption;
 	int lastOption;
 	Font font;
@@ -33,7 +34,7 @@ private:
 	Text Exit;
 
 	float timer = 0;
-	float coolDownTime = 0.54f;
+	float coolDownTime = 0.65f;
 };
 
 enum GameScreen

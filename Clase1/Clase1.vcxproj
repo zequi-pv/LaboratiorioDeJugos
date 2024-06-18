@@ -185,6 +185,7 @@ xcopy "$(SolutionDir)SFML\dlls\x64\dependencies" "$(OutDir)" /i/y/s</Command>
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="Obstacle.h" />
