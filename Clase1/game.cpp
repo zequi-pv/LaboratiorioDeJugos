@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "Player.h"
 #include "Obstacle.h"
+#include <random>
 
 using namespace sf;
 
@@ -14,6 +15,9 @@ void Game::runGame()
     RenderWindow window(sf::VideoMode(854, 480), "Labo de jugos");
     Clock clock;
     GameScreen currentScreen;
+
+    srand(time(NULL));
+
     currentScreen = GameScreen::MENU;
     firstOption = GameScreen::GAMEPLAY;
     lastOption = GameScreen::EXIT;
@@ -34,7 +38,7 @@ void Game::runGame()
     player.setSize(Vector2f(200, 100));
     player.getShape()->setPosition(Vector2f(rectangleX, rectangleY));
     player.getShape()->setFillColor(Color::Green);
-    player.setGravity(50.0f);
+    player.setGravity(70.0f);
 
     Obstacle obstacle;
     obstacle.setSize(Vector2f(50,300));
@@ -134,9 +138,9 @@ void Game::runGame()
             obstacle2.moveObstacle(dt);
             obstacle3.moveObstacle(dt);
 
-            obsTransition(obstacle);
-            obsTransition(obstacle2);
-            obsTransition(obstacle3);
+            obsTransition(obstacle, randomHeight, randomAltitude);
+            obsTransition(obstacle2, randomHeight, randomAltitude);
+            obsTransition(obstacle3, randomHeight, randomAltitude);
 
             collision(player, obstacle);
             collision(player, obstacle2);
@@ -246,11 +250,14 @@ void Game::runGame()
 //    
 //}
 
-void Game::obsTransition(Obstacle& obstacle)
+void Game::obsTransition(Obstacle& obstacle, int& randomHeight, int& randomAltitude)
 {
+    
     if (obstacle.getShape()->getPosition().x + obstacle.getShape()->getSize().x < 0)
     {
-        obstacle.getShape()->setPosition(854, (GetScreenHeight() / 2) + 50);
+        obstacle.getShape()->setSize(Vector2f(obstacle.getShape()->getSize().x, randomHeight = rand() % (400 + 1 - 200) + 200));
+
+        obstacle.getShape()->setPosition(854, randomAltitude = rand() % 480 + 1);
     }
 }
 

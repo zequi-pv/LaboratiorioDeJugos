@@ -9,7 +9,7 @@ public:
 	~Game();
 	void runGame();
 private:
-	void obsTransition(Obstacle& obstacle);
+	void obsTransition(Obstacle& obstacle, int& randomHeight, int& randomAltitude);
 	void collision(Player& player, Obstacle& obstacle);
 	
 	//CircleShape shape(100.f);
@@ -33,6 +33,8 @@ private:
 	Text Credits;
 	Text Exit;
 
+	int randomHeight = 0;
+	int randomAltitude = 0;
 	float timer = 0;
 	float coolDownTime = 0.65f;
 };
